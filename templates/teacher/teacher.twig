@@ -1,0 +1,34 @@
+{% extends 'teacher/layout.twig' %}
+
+{% block contents %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h1 class="h4 mb-0">Welcome, {{ teacher.name }} {{ teacher.surname }}</h1>
+        </div>
+        <div class="card-body">
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-4">
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white">
+          <h2 class="h5 mb-0">Informazioni sul Corso di Laurea</h2>
+        </div>
+	{% for course in courses %}
+        <div class="card-body">
+          <p><strong>Course:</strong> {{ course.name }}</p>
+          <p><strong>Description:</strong> {{ course.description }}</p>
+          <p><strong>Year:</strong> {{ course.year }}</p>
+        </div>
+	{% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
