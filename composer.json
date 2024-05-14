@@ -1,4 +1,5 @@
 {
+    "name": "uwunimia",
     "description": "A fully featured Unimia replacement",
     "license": "ISC",
     "autoload": {
