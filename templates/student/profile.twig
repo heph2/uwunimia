@@ -1,0 +1,47 @@
+{% block profile %}
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0">Student Profile</h5>
+      <button class="btn btn-primary" id="editProfileBtn">Edit Profile</button>
+    </div>
+    <div class="card-body">
+      <form hx-post="/student/profile" hx-target=".content">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name" value="{{ userData.name }}" disabled required>
+        </div>
+        <div class="mb-3">
+          <label for="surname" class="form-label">Surname</label>
+          <input type="text" class="form-control" id="surname" name="surname" value="{{ userData.surname }}" disabled required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" name="email" value="{{ userData.email }}" disabled required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" disabled required>
+        </div>
+        <div class="mb-3">
+          <label for="birthdate" class="form-label">Birthdate</label>
+          <input type="date" class="form-control" id="birthdate" name="birthdate" value="{{ userData.birthdate }}" disabled required>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-success" id="saveProfileBtn" disabled>Save Profile</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('editProfileBtn').addEventListener('click', function() {
+  const inputs = document.querySelectorAll('.card-body input');
+  inputs.forEach(input => {
+  input.disabled = !input.disabled;
+  });
+  document.getElementById('saveProfileBtn').disabled = !document.getElementById('saveProfileBtn').disabled;
+  });
+</script>
+{% endblock %}

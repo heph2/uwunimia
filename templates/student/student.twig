@@ -1,0 +1,67 @@
+{% extends 'student/layout.twig' %}
+
+{% block contents %}
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h4>Student Profile</h4>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">Enroll Date:</th>
+            <td>{{ student.enrollment_date }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Name:</th>
+            <td>{{ student.name }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Surname:</th>
+            <td>{{ student.surname }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Role:</th>
+            <td>Student</td>
+          </tr>
+          <tr>
+            <th scope="row">Academic Status:</th>
+            <td><span class="badge bg-success">{{ student.current_status }}</span></td>
+          </tr>
+          <tr>
+            <th scope="row">Degree:</th>
+            <td>{{ degree[0].degree }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-header">
+      <h4>Courses</h4>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Course Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Year</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for course in degree %}
+          <tr>
+            <td>{{ course.name }}</td>
+            <td>{{ course.description }}</td>
+            <td>{{ course.year }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <title>UwUnimia</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <script src="https://unpkg.com/htmx.org@1.9.4/dist/htmx.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div id="logo-container">
+          <img src="logo.png" alt="UwUnimia Logo" style="height: 50px;">
+	</div>
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#" id="nav-title">UwUnimia</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ '/' ~ role }}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/student/profile" hx-get="/student/profile" hx-target=".content">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/student/exams" hx-get="/student/exams" hx-target=".content">Exams</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/logout" hx-post="/logout" hx-target="body" hx-replace-url="true">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      <div class="content">
+        {% block contents %}
+        {% endblock %}
+      </div>  
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

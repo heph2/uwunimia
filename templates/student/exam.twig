@@ -1,0 +1,83 @@
+{% block exams %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4>Exams Available</h4>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            {% for exam in exams %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              {{ exam.name }}
+              <form hx-post="/student/exams" hx-target=".content">
+                <input type="hidden" name="courseId" value="{{ exam.course }}">
+                <input type="hidden" name="examId" value="{{ exam.id }}">
+                <button type="submit" class="btn btn-primary" onclick="return confirm('Confirm Exam Enrollment?')">Enroll</button>
+              </form>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4>Enrolled Exams</h4>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            {% for exam in enrolledExams %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              {{ exam.name }}
+              <form hx-delete="/student/exams" hx-target=".content">
+                <input type="hidden" name="courseId" value="{{ exam.course }}">
+                <input type="hidden" name="examId" value="{{ exam.id }}">
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Confirm Exam Cancellation?')">Cancel</button>
+              </form>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card bg-success text-white">
+        <div class="card-header">
+          <h4>Passed Exams</h4>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush text-white">
+            {% for exam in careerValid %}
+            <li class="list-group-item bg-transparent">
+              {{ exam.name }} - <strong>{{ exam.mark }}</strong>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card bg-warning">
+        <div class="card-header">
+          <h4>Exams Not Passed</h4>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            {% for exam in career %}
+            <li class="list-group-item bg-transparent">
+              {{ exam.name }} - <strong>{{ exam.mark }}</strong>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
