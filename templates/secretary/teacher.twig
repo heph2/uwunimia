@@ -1,0 +1,97 @@
+{% block contents %}
+<div class="container mt-3">
+  <h2>Teacher Management</h2>
+  <button class="btn btn-primary" onclick="showAddTeacherForm()">Add Teacher</button>
+
+  <table class="table table-hover mt-3">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Email</th>
+        <th scope="col">Birth Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for teacher in teachers %}
+      <tr>
+        <th scope="row">{{ loop.index }}</th>
+        <td>{{ teacher.name }}</td>
+        <td>{{ teacher.surname }}</td>
+        <td>{{ teacher.email }}</td>
+        <td>{{ teacher.birthdate | date('Y-m-d') }}</td>
+        <td>
+          <button class="btn btn-sm btn-secondary" onclick="showEditTeacherForm('{{ teacher.id }}', '{{ teacher.name }}', '{{ teacher.surname }}', '{{ teacher.email }}', '{{ teacher.birthdate | date('Y-m-d') }}')">Edit</button>
+          <button class="btn btn-sm btn-danger" hx-delete="/secretary/teachers/delete/{{ teacher.id }}" hx-target="closest tr" hx-confirm="Are you sure you want to delete this teacher?">Cancel</button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="modal fade" id="teacherFormModal" tabindex="-1" aria-labelledby="teacherFormModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="teacherFormModalLabel">Teacher Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+      <div class="modal-body">
+        <form id="teacherForm" hx-post="/secretary/teachers" hx-target=".content">
+          <input type="hidden" id="teacherId" name="teacherId">
+          <div class="mb-3">
+            <label for="teacherName" class="form-label">Name:</label>
+            <input type="text" class="form-control" id="teacherName" name="teacherName" required>
+          </div>
+          <div class="mb-3">
+            <label for="teacherSurname" class="form-label">Surname:</label>
+            <input type="text" class="form-control" id="teacherSurname" name="teacherSurname" required>
+          </div>
+          <div class="mb-3">
+            <label for="teacherEmail" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="teacherEmail" name="teacherEmail" required>
+          </div>
+          <div class="mb-3">
+            <label for="teacherBirthdate" class="form-label">Birth Date:</label>
+            <input type="date" class="form-control" id="teacherBirthdate" name="teacherBirthdate" required>
+          </div>
+          <div class="mb-3">
+            <label for="teacherPassword" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="teacherPassword" name="teacherPassword" required>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showAddTeacherForm() {
+    clearForm();
+    document.getElementById('teacherFormModalLabel').textContent = 'Add New Teacher';
+    new bootstrap.Modal(document.getElementById('teacherFormModal')).show();
+}
+
+function showEditTeacherForm(id, name, surname, email, birthdate) {
+    document.getElementById('teacherId').value = id;
+    document.getElementById('teacherName').value = name;
+    document.getElementById('teacherSurname').value = surname;
+    document.getElementById('teacherEmail').value = email;
+    document.getElementById('teacherBirthdate').value = birthdate;
+    document.getElementById('teacherFormModalLabel').textContent = 'Edit Teacher';
+    new bootstrap.Modal(document.getElementById('teacherFormModal')).show();
+}
+
+function clearForm() {
+    document.getElementById('teacherForm').reset();
+    document.getElementById('teacherId').value = '';
+}
+</script>
+{% endblock %}

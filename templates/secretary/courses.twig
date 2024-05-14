@@ -1,0 +1,84 @@
+{% block courses %}
+<div class="container mt-4">
+  <h3>Courses</h3>
+  <ul class="list-group">
+    {% for course in courses %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ course.name }}
+      <div>
+        <button class="btn btn-sm btn-warning" onclick="showEditCourseForm('{{ course.id }}', '{{ course.name }}')">Edit</button>
+        <button class="btn btn-sm btn-danger" hx-delete="/secretary/degrees/courses/{{ course.id }}" hx-target="closest li" hx-confirm="Are you sure you want to delete this course?">Cancel</ei>
+</div>
+</li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="modal fade" id="courseEditModal" tabindex="-1" aria-labelledby="courseEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="courseEditModalLabel">Edit Course</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form hx-post="/secretary/courses" hx-target="closest li">
+          <input type="hidden" id="editCourseId" name="courseId">
+          <div class="mb-3">
+            <label for="editCourseName" class="form-label">Course Name:</label>
+            <input type="text" class="form-control" id="editCourseName" name="courseName" required>
+          </div>
+	  <div class="mb-3">
+	    <label for="courseResp">Teacher:</label>
+	    <select id="courseResp" name="courseResp">
+	      {% for teacher in teachers %}
+	      <option value={{ teacher.id }}>{{ teacher.name }} {{ teacher.surname }}</option>
+	      {% endfor %}
+	    </select><br>
+	  </div>
+	  <div class="mb-3">
+	    <label for="courseProp">Propedeucity:</label>
+	    <select id="courseProp" name="courseProp">
+	      {% for course in courses %}
+	      <option value={{ course.id }}>{{ course.name }}</option>
+	      {% endfor %}
+	    </select><br>
+	  </div>
+	  <div class="mb-3">
+	    <label for="degree">Degree:</label>
+	    <select id="degree" name="degree">
+	      {% for degree in degrees %}
+	      <option value={{ degree.id }}>{{ degree.name }}</option>
+	      {% endfor %}
+	    </select><br>
+	  </div>
+	  <div>
+	    <label for="year">Year:</label>
+	    <select id="courseYear" name="courseYear">
+	      <option value=1>1</option>
+	      <option value=2>2</option>
+	      <option value=3>3</option>
+	    </select><br>
+	  </div>
+	  <div>
+	    <label for="description">Description:</label>
+	    <input type="text" id="description" name="description" required><br>
+	  </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showEditCourseForm(courseId, courseName) {
+  document.getElementById('editCourseId').value = courseId;
+  document.getElementById('editCourseName').value = courseName;
+  document.getElementById('courseEditModalLabel').textContent = 'Edit Course - ' + courseName;
+  new bootstrap.Modal(document.getElementById('courseEditModal')).show();
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% block archive %}
+<div class="container mt-4">
+  <h3>Archive</h3>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Surname</th>
+          <th scope="col">Status</th>
+          <th scope="col">Degree Course</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for student in archivedStudents %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ student.name }}</td>
+          <td>{{ student.surname }}</td>
+          <td>
+            <span class="badge {% if student.current_status == 'resigned' %}bg-danger{% else %}bg-warning text-dark{% endif %}">
+              {{ student.current_status | capitalize }}
+            </span>
+          </td>
+          <td>{{ student.degree_course }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
