@@ -1,0 +1,29 @@
+{    
+    "description": "A fully featured Unimia replacement",
+    "license": "ISC",
+    "autoload": {
+        "psr-4": {
+            "UwUnimia\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marco Bauce"
+        }
+    ],    
+    "require": {
+        "slim/slim": "4.*",
+        "nyholm/psr7": "^1.8",
+        "nyholm/psr7-server": "^1.1",
+        "php-di/php-di": "^7.0",
+        "robmorgan/phinx": "^0.16.0",
+        "monolog/monolog": "^3.6",
+        "slim/twig-view": "^3.4"
+    },
+    "config": {
+	"process-timeout": 0
+    },
+    "scripts": {
+	"start": "php -S localhost:8888 -t public/"
+    }
+}
