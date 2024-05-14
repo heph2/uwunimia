@@ -1,4 +1,4 @@
-{    
+{
     "description": "A fully featured Unimia replacement",
     "license": "ISC",
     "autoload": {
@@ -10,7 +10,7 @@
         {
             "name": "Marco Bauce"
         }
-    ],    
+    ],
     "require": {
         "slim/slim": "4.*",
         "nyholm/psr7": "^1.8",
