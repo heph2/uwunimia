@@ -47,7 +47,9 @@ return [
         $charset = $settings['db']['charset'];
         $flags = $settings['db']['flags'];
         $dsn = "pgsql:host=$host;port=5432;dbname=$dbname";
-        return new PDO($dsn, $username, $password);
+        $pdo = new PDO($dsn, $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
     },
 
     App::class => function (ContainerInterface $container) {
