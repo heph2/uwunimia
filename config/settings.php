@@ -1,6 +1,13 @@
 <?php
 
 use Monolog\Logger;
+use Dotenv\Dotenv;
+
+// Load .env file
+// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
 // Should be set to 0 in production
 error_reporting(E_ALL);
 
@@ -29,10 +36,10 @@ $settings = [
     ],
     "db" => [
         'driver' => 'pgsql',
-        'host' => 'localhost',
-        'username' => 'postgres',
-        'database' => 'test',
-        'password' => 'postgres',
+        'host' => $_ENV['DB_HOST'],
+        'username' => $_ENV['DB_USERNAME'],
+        'database' => $_ENV['DB_DATABASE'],
+        'password' => $_ENV['DB_PASSWORD'],
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
         'flags' => [
