@@ -1,8 +1,12 @@
-# Lampredotto
+# UWUnimia
 
-Lampredotto utilizza un classico Pattern MVC senza l'utilizzo di framework esterni, ma solo con l'utilizzo di librerie di terze parti per la gestione delle richieste HTTP e per la gestione del database.
+UwUnimia utilizza un classico Pattern MVC utilizzando
+[Slim](https://www.slimframework.com/), ma solo con l'utilizzo di
+librerie di terze parti per la gestione delle richieste HTTP e per la
+gestione del database.
 
-Repository Disponibile su [GitHub](https://github.com/heph2/lampredotto) e Demo al segeuente [Link](https://lampredotto.heph2.dev)
+Repository Disponibile su
+[GitHub](https://github.com/heph2/uwunimia)
 
 ## Requisiti
 
@@ -18,30 +22,36 @@ Installare le dipendenze con composer
 ```bash
 composer install
 ```
-A questo punto possiamo lanciare postgres
 
-```bash
-docker-compose up -d
-```
 Ed infine lanciare le migrazioni e i seeders
 
 ```bash
 composer migrate && composer seed
 ```
 
-## Utilizzo
-
-Possiamo direttamente utilizzare il server di sviluppo di PHP, ma prima dobbiamo generare i css con TailwindCSS
+Possiamo avere un ambiente di demo semplicemente lanciando
 
 ```bash
-tailwindcss -i src/templates/css/input.css -o public/css/output.css
+docker compose up -d
 ```
+
+Dopodiche dobbiamo semplicemente importare il dump con:
+
+```bash
+docker exec -u postgres uwunimia-db-1 psql postgres postgres -d test -f docker-entrypoint-initdb.d/dump.sql
+```
+
+A questo punto abbiamo l'applicativo disponibile in http://localhost:8080
+
+## Utilizzo
+
+Possiamo direttamente utilizzare il server di sviluppo di PHP
 
 ```bash
 composer start
 ```
 
-Inoltre Lampredotto proverá a loggare utilizzando Monolog su un file di log, per visualizzare i log possiamo utilizzare il comando
+Inoltre UwUnimia proverá a loggare utilizzando Monolog su un file di log, per visualizzare i log possiamo utilizzare il comando
 
 ```bash
 tail -f var/log/app.log
@@ -51,12 +61,11 @@ tail -f var/log/app.log
 
 ```
 src
-    Controllers -> Gestione Logica delle richieste HTTP
+    Actions -> Gestione Logica delle richieste HTTP
     Models -> Gestione della logica di "business" (AKA accesso al database)
     Middleware -> Gestione delle richieste HTTP prima di arrivare al controller
 
 templates -> Gestione HTML con Twig (Template Engine)
-    css -> TailwindCSS
 
 db 
     migrations -> Migrazioni del database
