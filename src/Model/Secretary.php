@@ -145,6 +145,7 @@ class Secretary {
         $sql->bindParam(':teacher_id', $teacher_id);
         $sql->bindParam(':description', $description);
         $sql->bindParam(':year', $year);
+
         $sql->execute();
 
         $course_id = $this->db->lastInsertId();

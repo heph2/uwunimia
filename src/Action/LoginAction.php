@@ -20,21 +20,22 @@ final class LoginAction extends BaseAction
     public function login(Request $request, Response $response): Response {
         $this->user = new User($this->pdo);
 
-        // Retrieve user input email and password
+        // POST Request Body
         $body = $request->getParsedBody();
         $user_email = $body['email'];
         $user_pssw = $body['password'];
 
-        $this->logger->info("User login attempt: " . $user_email . " - " . $user_pssw);
+
+        // Database saved hashed password
         $user_data = $this->user->getByEmail($user_email);
-        $this->logger->info("User data: " . json_encode($user_data));
         $user_role = $this->user->getRole($user_data['id']);
-        $this->logger->info("User role: " . $user_role['role']);
 
         if ($user_data) {
             $this->logger->info("User found!");
-            // if (password_verify($user_pssw, $user_data['password'])) {
+            $this->logger->info("Password inserted: " . $user_pssw);
+            $this->logger->info("Password found on DB: " . $user_data['password']);
             if (1) {
+            // if (password_verify($user_pssw, $user_data['password'])) {
                 $this->logger->info("User found!");
                 $_SESSION['user'] = $user_data['id'];
                 $_SESSION['role'] = $user_role['role'];
@@ -50,9 +51,9 @@ final class LoginAction extends BaseAction
 
         unset($_SESSION["user"]);
 
-        return $this->response
+        return $response
             ->withHeader('Location', '/login')
-            ->withStatus(403);
+            ->withStatus(302);
     }
 
     public function logout(Request $request, Response $response): Response {
