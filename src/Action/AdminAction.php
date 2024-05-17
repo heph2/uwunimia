@@ -23,7 +23,12 @@ final class AdminAction extends BaseAction
     public function __invoke(Request $request, Response $response): Response
     {
         $this->logger->info("Admin Action Dispatched");
-        return $this->render($request, $response, 'secretary/secretary.twig', [ 'role' => $_SESSION['role']]);
+        $secretary = $this->secretary->getProfileInfo($this->secretaryID);
+        return $this->render($request, $response, 'secretary/secretary.twig',
+                             [
+                                 'role' => $_SESSION['role'],
+                                 'secretary' => $secretary,
+                             ]);
     }
 
     public function listStudents(Request $request, Response $response): Response
@@ -103,14 +108,25 @@ final class AdminAction extends BaseAction
     public function addDegree(Request $request, Response $response): Response
     {
         $body = $request->getParsedBody();
-        $this->secretary->addDegree($body);
+
+        try {
+            $this->secretary->addDegree($body);
+        } catch (Exception $e) {
+            $this->logger->error("Error while adding degree");
+        }
         return $response->withStatus(200);
     }
 
     public function addCourse(Request $request, Response $response): Response
     {
         $body = $request->getParsedBody();
-        $this->secretary->addCourse($body);
+        try {
+            $this->logger->info("calling add course");
+            $this->secretary->addCourse($body);
+        } catch (Exception $e) {
+            $this->logger->info("calling errorr");
+            $this->logger->error("Error while adding course");
+        }
         return $response->withStatus(200);
     }
 
