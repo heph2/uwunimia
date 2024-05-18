@@ -5,11 +5,11 @@ dallo Schema fino al funzionamento dell'applicativo.
 
 ## Schema ER
 
-[Schema ER](Schema-ER.png)
+![Schema ER](Schema-ER.png)
 
 ## Logic Schema
 
-[Schema Logic](Logic-Scheme.png)
+![Schema Logic](Logic-Scheme.png)
 
 ## Application Implementation details
 
