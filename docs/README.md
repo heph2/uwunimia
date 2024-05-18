@@ -71,3 +71,21 @@ Utilizzo [HTMX](https://htmx.org/) per gestire le chiamate a backend
 dal frontend. Questo mi permette di dare l'impressione di usare una
 SPA (SinglePageApplication), andando a sostituire solo l'HTML
 necessario invece che l'intera pagina.
+
+# Documentazione Utente
+
+Overview dell'utilizzo della piattaforma
+
+## Login
+
+- Studente: 
+  Utente: m.rossi@studenti.it
+  Password: `mariopassword`
+- Insegnante:
+  Utente: p.baudo@professori.it
+  Password: `pippopassword`
+- Segreteria:
+  Utente: r.strapozzo@segreteria.it
+  Password: `roccopassword`
+  
+![Login](assets/login.png)
