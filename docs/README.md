@@ -92,8 +92,8 @@ Overview dell'utilizzo della piattaforma
 
 ## Studente
 
-![Home](assets/Screenshot 2024-05-17 at 14.47.18.png)
+![Home](assets/student-home.png)
 
-![Profile](assets/Screenshot 2024-05-17 at 14.47.26.png)
+![Profile](assets/student-profile.png)
 
-![Exams](assets/Screenshot 2024-05-17 at 14.47.35.png)
+![Exams](assets/student-exams.png)
