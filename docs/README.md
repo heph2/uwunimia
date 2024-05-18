@@ -78,7 +78,7 @@ Overview dell'utilizzo della piattaforma
 
 ## Login
 
-- Studente: 
+- Studente:
   Utente: m.rossi@studenti.it
   Password: `mariopassword`
 - Insegnante:
@@ -87,5 +87,13 @@ Overview dell'utilizzo della piattaforma
 - Segreteria:
   Utente: r.strapozzo@segreteria.it
   Password: `roccopassword`
-  
+
 ![Login](assets/login.png)
+
+## Studente
+
+![Home](assets/Screenshot 2024-05-17 at 14.47.18.png)
+
+![Profile](assets/Screenshot 2024-05-17 at 14.47.26.png)
+
+![Exams](assets/Screenshot 2024-05-17 at 14.47.35.png)
