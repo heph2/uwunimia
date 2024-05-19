@@ -92,4 +92,12 @@ Overview dell'utilizzo della piattaforma
 
 ## Student
 
-![Home](assets/student.mov)
+![Student Video](assets/student.mov)
+
+## Teacher
+
+![Teacher Video](assets/Teacher.mov)
+
+## Secretary
+
+![Secretary Video](assets/secretary.mov)
