@@ -74,7 +74,9 @@ necessario invece che l'intera pagina.
 
 # Documentazione Utente
 
-Overview dell'utilizzo della piattaforma
+Overview dell'utilizzo della piattaforma.
+Nei link relativi qui sotto ci sono dei video dimostrativi.
+(Nella cartella assets)
 
 ## Login
 
