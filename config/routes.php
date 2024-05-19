@@ -44,6 +44,7 @@ return function (App $app) {
         $group->post('/profile', [\UwUnimia\Action\AdminAction::class, 'editProfile']);
         $group->delete('/degrees/delete/{id}', [\UwUnimia\Action\AdminAction::class, 'deleteDegree']);
         $group->delete('/teachers/delete/{id}', [\UwUnimia\Action\AdminAction::class, 'deleteTeacher']);
+        $group->delete('/student/delete/{id}', [\UwUnimia\Action\AdminAction::class, 'deleteStudent']);
         $group->delete('/degrees/courses/{id}', [\UwUnimia\Action\AdminAction::class, 'deleteCourse']);
     })
         ->add(new \UwUnimia\Middleware\SessionMiddleware())

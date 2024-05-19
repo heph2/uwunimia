@@ -169,6 +169,17 @@ class Secretary {
         $sql->execute();
     }
 
+    public function deleteStudent($id) {
+        $sql = $this->db->prepare('delete from student where id = :id');
+        $sql->bindParam(':id', $id);
+        $sql->execute();
+
+        // Delete from account table ( This should be handled using delete on cascade)
+        $sql = $this->db->prepare('delete from account where id = :id');
+        $sql->bindParam(':id', $id);
+        $sql->execute();
+    }
+
     public function deleteCourse($id) {
         // Delete from propedeucity table
         $sql = $this->db->prepare('delete from propedeucity where course = :id');

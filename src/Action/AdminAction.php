@@ -136,6 +136,12 @@ final class AdminAction extends BaseAction
         return $response->withStatus(200);
     }
 
+    public function deleteStudent(Request $request, Response $response, array $args): Response
+    {
+        $this->secretary->deleteStudent($args['id']);
+        return $response->withStatus(200);
+    }
+
     public function deleteDegree(Request $request, Response $response, array $args): Response
     {
         $this->secretary->deleteDegree($args['id']);
