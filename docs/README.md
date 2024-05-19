@@ -90,10 +90,6 @@ Overview dell'utilizzo della piattaforma
 
 ![Login](assets/login.png)
 
-## Studente
+## Student
 
-![Home](assets/student-home.png)
-
-![Profile](assets/student-profile.png)
-
-![Exams](assets/student-exams.png)
+![Home](assets/student.mov)
