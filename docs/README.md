@@ -94,12 +94,12 @@ Nei link relativi qui sotto ci sono dei video dimostrativi.
 
 ## Student
 
-![Student Video](assets/student.mov)
+![Student Video](assets/student.mp4)
 
 ## Teacher
 
-![Teacher Video](assets/Teacher.mov)
+![Teacher Video](assets/teacher.mp4)
 
 ## Secretary
 
-![Secretary Video](assets/secretary.mov)
+![Secretary Video](assets/secretary.mp4)
